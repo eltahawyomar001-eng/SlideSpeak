@@ -43,10 +43,8 @@ export function BenefitsSection() {
                 variant="outline"
                 className="gap-[8px] rounded-[12px] border-[#1570ef] px-[12px] py-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]"
               >
-                <div className="size-[32px] overflow-hidden shrink-0 relative">
-                  <div className="absolute inset-[8.33%]">
-                    <StarIcon className="block size-full" />
-                  </div>
+                <div className="size-[32px] overflow-hidden shrink-0 flex items-center justify-center">
+                  <StarIcon className="w-[16px] h-[16px]" />
                 </div>
                 <span
                   className="font-semibold text-[14px] leading-[20px] text-center bg-gradient-to-r from-[#1570ef] to-[#2e90fa] bg-clip-text shrink-0"
