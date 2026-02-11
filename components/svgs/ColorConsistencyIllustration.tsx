@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, useState, useEffect } from "react";
 import { CheckIcon } from "@/components/icons/CheckIcon";
 import { XCloseIcon } from "@/components/icons/XCloseIcon";
 import { SlideSpeakMark } from "@/components/icons/SlideSpeakMark";
@@ -9,15 +12,38 @@ import { SlideSpeakMark } from "@/components/icons/SlideSpeakMark";
  * - Left: Inconsistent design (random bright colors, X badge)
  * - Right: Consistent branded design (muted blues, check badge)
  *
- * All graphics are inline SVGs/divs — no external assets.
+ * Responsive: scales down proportionally on smaller screens
+ * using ResizeObserver + CSS transform.
  */
 export function ColorConsistencyIllustration() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver(([entry]) => {
+      const width = entry.contentRect.width;
+      setScale(Math.min(width / 508, 1));
+    });
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
-      className="relative h-[270px] w-full min-w-[508px] shrink-0"
+      ref={containerRef}
+      className="relative w-full max-w-[508px] mx-auto overflow-hidden"
+      style={{ height: 270 * scale }}
       role="img"
       aria-label="Color consistency illustration comparing inconsistent and branded slide designs"
     >
+      <div
+        className="absolute top-0 left-0 w-[508px] h-[270px] origin-top-left"
+        style={{ transform: `scale(${scale})` }}
+      >
       {/* RIGHT SLIDE (consistent, with check badge) */}
       <div className="absolute right-[8px] top-[calc(50%+0.09px)] -translate-y-1/2 flex flex-col items-start rounded-[14px] bg-[rgba(255,255,255,0.1)] p-[4px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
         <div className="relative h-[138.181px] w-[242px] shrink-0 rounded-[10px] border-[0.261px] border-solid border-[#f2f4f7] bg-white shadow-[0px_0.261px_0.783px_0px_rgba(16,24,40,0.1),0px_0.261px_0.522px_0px_rgba(16,24,40,0.06)]">
@@ -92,6 +118,7 @@ export function ColorConsistencyIllustration() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

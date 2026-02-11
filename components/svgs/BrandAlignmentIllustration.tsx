@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, useState, useEffect } from "react";
 import { SlideSpeakMark } from "@/components/icons/SlideSpeakMark";
 import SlideSpeakMascot from "@/components/icons/SlideSpeakMascot";
 import { GlobeIcon } from "@/components/icons/GlobeIcon";
@@ -23,12 +26,34 @@ import {
  * All graphics are inline SVGs — no external assets.
  */
 export function BrandAlignmentIllustration() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver(([entry]) => {
+      const width = entry.contentRect.width;
+      setScale(Math.min(width / 532, 1));
+    });
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
-      className="relative h-[270px] w-[532px] shrink-0"
+      ref={containerRef}
+      className="relative w-full max-w-[532px] mx-auto overflow-hidden"
+      style={{ height: 270 * scale }}
       role="img"
       aria-label="Brand alignment illustration showing SlideSpeak extracting brand colors, logos, and typography"
     >
+      <div
+        className="absolute top-0 left-0 w-[532px] h-[270px] origin-top-left"
+        style={{ transform: `scale(${scale})` }}
+      >
       {/* -- Connecting lines (absolute positioned) -- */}
 
       {/* Upper curve: top icon card to right area */}
@@ -142,6 +167,7 @@ export function BrandAlignmentIllustration() {
         >
           Typography
         </span>
+      </div>
       </div>
     </div>
   );
