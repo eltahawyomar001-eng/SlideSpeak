@@ -35,7 +35,7 @@ export function ColorConsistencyIllustration() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-[532px] mx-auto overflow-hidden"
+      className="relative w-full max-w-[532px] mx-auto"
       style={{ height: 270 * scale }}
       role="img"
       aria-label="Color consistency illustration comparing inconsistent and branded slide designs"
