@@ -25,7 +25,7 @@ export function ColorConsistencyIllustration() {
 
     const observer = new ResizeObserver(([entry]) => {
       const width = entry.contentRect.width;
-      setScale(Math.min(width / 508, 1));
+      setScale(Math.min(width / 532, 1));
     });
 
     observer.observe(el);
@@ -35,13 +35,13 @@ export function ColorConsistencyIllustration() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-[508px] mx-auto overflow-hidden"
+      className="relative w-full max-w-[532px] mx-auto overflow-hidden"
       style={{ height: 270 * scale }}
       role="img"
       aria-label="Color consistency illustration comparing inconsistent and branded slide designs"
     >
       <div
-        className="absolute top-0 left-0 w-[508px] h-[270px] origin-top-left"
+        className="absolute top-0 left-0 w-[532px] h-[270px] origin-top-left"
         style={{ transform: `scale(${scale})` }}
       >
       {/* RIGHT SLIDE (consistent, with check badge) */}

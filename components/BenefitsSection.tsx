@@ -43,8 +43,10 @@ export function BenefitsSection() {
                 variant="outline"
                 className="gap-[8px] rounded-[12px] border-[#1570ef] px-[12px] py-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]"
               >
-                <div className="size-[32px] overflow-hidden shrink-0 flex items-center justify-center">
-                  <StarIcon className="w-[14.84px] h-[14.83px]" />
+                <div className="size-[32px] overflow-hidden shrink-0 relative">
+                  <div className="absolute inset-[8.33%]">
+                    <StarIcon className="block size-full" />
+                  </div>
                 </div>
                 <span
                   className="font-semibold text-[14px] leading-[20px] text-center bg-gradient-to-r from-[#1570ef] to-[#2e90fa] bg-clip-text shrink-0"
@@ -73,7 +75,7 @@ export function BenefitsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
           {/* Left card: Brand Alignment */}
           <Card className="flex flex-col gap-6 md:gap-[32px] items-start overflow-hidden rounded-[16px] md:rounded-[24px] border-[#eaecf5] bg-white p-0 shadow-none">
-            <CardHeader className="p-5 md:p-[32px] pb-0 md:pb-0">
+            <CardHeader className="p-5 md:p-[32px] pb-0 md:pb-0 space-y-[8px]">
               <CardTitle className="text-[20px] md:text-[24px] leading-[28px] md:leading-[32px] text-[#101828]">
                 No design skills? No problem!
               </CardTitle>
@@ -88,7 +90,7 @@ export function BenefitsSection() {
 
           {/* Right card: Color Consistency */}
           <Card className="flex flex-col gap-6 md:gap-[32px] items-center overflow-clip rounded-[16px] md:rounded-[24px] border-[#eaecf5] bg-white p-0 shadow-none">
-            <CardHeader className="p-5 md:p-[32px] pb-0 md:pb-0 w-full">
+            <CardHeader className="p-5 md:p-[32px] pb-0 md:pb-0 w-full space-y-[8px]">
               <CardTitle className="text-[20px] md:text-[24px] leading-[28px] md:leading-[32px] text-[#101828]">
                 Consistent colors, fonts, logos... automatically
               </CardTitle>
